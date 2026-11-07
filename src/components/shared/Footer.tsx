@@ -12,7 +12,7 @@ const categories = [
 export default function Footer() {
   return (
     <footer id="about" className="mt-auto bg-[#20201e] text-white">
-      <div className="mx-auto max-w-[1440px] px-5 py-14 md:px-10 md:py-16">
+      <div className="mx-auto max-w-360 px-5 py-14 md:px-10 md:py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
         
           <div>

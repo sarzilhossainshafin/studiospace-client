@@ -76,8 +76,7 @@ export default async function Home() {
     <main className="min-h-screen bg-[#faf9f6] text-[#20201e]">
       <HeroSlider />
 
-      {/* CATEGORIES */}
-      <section className="mx-auto max-w-[1440px] px-5 py-24 md:px-10">
+      <section className="mx-auto 	max-w-360 px-5 py-24 md:px-10">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-5">
           <div>
             <p className="mb-3 text-xs font-bold tracking-[0.2em] text-[#f36b38]">
@@ -116,9 +115,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* FEATURED STUDIOS */}
       <section className="bg-[#f0eee8] py-24">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+        <div className="mx-auto 	max-w-360 px-5 md:px-10">
           <div className="mb-12 flex flex-wrap items-end justify-between gap-5">
             <div>
               <p className="mb-3 text-xs font-bold tracking-[0.2em] text-[#f36b38]">
@@ -206,10 +204,9 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
       <section
         id="how-it-works"
-        className="mx-auto max-w-[1440px] px-5 py-24 md:px-10"
+        className="mx-auto 	max-w-360 px-5 py-24 md:px-10"
       >
         <div className="mx-auto mb-14 max-w-2xl text-center">
           <p className="mb-3 text-xs font-bold tracking-[0.2em] text-[#f36b38]">
@@ -246,9 +243,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* HOST SECTION */}
       <section id="about" className="px-5 pb-24 md:px-10">
-        <div className="mx-auto grid max-w-[1440px] overflow-hidden rounded-[28px] bg-[#242421] md:grid-cols-2">
+        <div className="mx-auto grid 	max-w-360 overflow-hidden rounded-[28px] bg-[#242421] md:grid-cols-2">
           <div className="flex flex-col justify-center px-8 py-16 text-white md:px-16">
             <p className="mb-4 text-xs font-bold tracking-[0.2em] text-[#f68a61]">
               FOR SPACE OWNERS
@@ -272,7 +268,7 @@ export default async function Home() {
           </div>
 
           <div
-            className="min-h-[320px] bg-cover bg-center"
+            className="	min-h-80 bg-cover bg-center"
             style={{
               backgroundImage:
                 "url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=85')",
@@ -280,7 +276,7 @@ export default async function Home() {
           />
         </div>
 
-        <div className="mx-auto mt-12 grid max-w-[1440px] gap-6 md:grid-cols-2">
+        <div className="mx-auto mt-12 grid  gap	max-w-360-6 md:grid-cols-2">
           <div className="rounded-2xl border border-[#e9e6df] bg-white p-7">
             <span className="text-2xl">🛡️</span>
 

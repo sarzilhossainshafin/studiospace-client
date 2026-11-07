@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import Image from "next/image";
 
 const API_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
@@ -43,14 +44,12 @@ export default async function ExploreStudios({
     console.error("Failed to load studios:", error);
   }
 
-  // Filter by category
   if (selectedCategory) {
     studios = studios.filter(
       (studio) => studio.category === selectedCategory
     );
   }
 
-  // Sort by hourly rate
   if (selectedSort === "low-high") {
     studios.sort((a, b) => a.hourlyRate - b.hourlyRate);
   } else if (selectedSort === "high-low") {
@@ -67,7 +66,6 @@ export default async function ExploreStudios({
 
   return (
     <section className="mx-auto min-h-screen max-w-7xl px-5 py-12">
-      {/* Page Heading */}
       <div className="mb-10">
         <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-primary">
           Find Your Creative Space
@@ -83,7 +81,6 @@ export default async function ExploreStudios({
         </p>
       </div>
 
-      {/* Filters */}
       <form
         action="/studios"
         method="GET"
@@ -148,7 +145,6 @@ export default async function ExploreStudios({
         </Link>
       </form>
 
-      {/* Results */}
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-xl font-bold">
           Available Studios
@@ -167,12 +163,16 @@ export default async function ExploreStudios({
               key={studio._id}
               className="group overflow-hidden rounded-2xl border border-border bg-card transition duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
-              <div className="overflow-hidden">
-                <img
-                  src={studio.image}
-                  alt={studio.title}
-                  className="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
-                />
+              <div className="relative h-56 overflow-hidden">
+                {studio.image && (
+                  <Image
+                    src={studio.image}
+                    alt={studio.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                )}
               </div>
 
               <div className="p-5">

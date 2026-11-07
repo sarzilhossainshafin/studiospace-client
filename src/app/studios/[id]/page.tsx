@@ -1,4 +1,6 @@
+
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import BookingButton from "./BookingButton";
 
@@ -53,12 +55,17 @@ export default async function StudioDetails({ params }: PageProps) {
       </Link>
 
       <div className="grid gap-10 lg:grid-cols-2">
-        <div className="overflow-hidden rounded-3xl bg-secondary">
-          <img
-            src={studio.image}
-            alt={studio.title}
-            className="h-[300px] w-full object-cover sm:h-[450px]"
-          />
+        <div className="relative h-75 overflow-hidden rounded-3xl bg-secondary sm:h-112.5">
+          {studio.image && (
+            <Image
+              src={studio.image}
+              alt={studio.title}
+              fill
+              priority
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
+              className="object-cover"
+            />
+          )}
         </div>
 
         <div className="flex flex-col justify-center">
