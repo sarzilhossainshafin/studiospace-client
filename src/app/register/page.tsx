@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { GoogleLogin } from "@react-oauth/google";
 
 const API_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
@@ -12,6 +13,7 @@ export default function RegisterPage() {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -68,11 +70,10 @@ export default function RegisterPage() {
         throw new Error(result.message || "Registration failed.");
       }
 
-      setMessage("Registration successful! Redirecting to login...");
-
-      setTimeout(() => {
-        router.push("/login");
-      }, 1200);
+      setMessage("Registration successful! Redirecting...");
+      
+      router.push("/");
+      router.refresh();
     } catch (err) {
       setError(
         err instanceof Error
@@ -81,6 +82,41 @@ export default function RegisterPage() {
       );
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogleSuccess = async (credential: string) => {
+    setError("");
+    setMessage("");
+
+    try {
+      setGoogleLoading(true);
+
+      const response = await fetch(`${API_URL}/api/auth/google`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ credential }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Google registration failed.");
+      }
+
+      router.push("/");
+      router.refresh();
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Google registration failed. Please try again."
+      );
+    } finally {
+      setGoogleLoading(false);
     }
   };
 
@@ -195,12 +231,40 @@ export default function RegisterPage() {
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || googleLoading}
             className="w-full rounded-xl bg-primary px-5 py-3.5 font-bold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {loading ? "Creating Account..." : "Create Account"}
           </button>
         </form>
+
+        <div className="my-6 flex items-center gap-3">
+          <div className="h-px flex-1 bg-border" />
+          <span className="text-xs text-muted">OR CONTINUE WITH</span>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+
+        <div className="flex justify-center">
+          <div className={googleLoading ? "pointer-events-none opacity-60" : ""}>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                if (credentialResponse.credential) {
+                  handleGoogleSuccess(credentialResponse.credential);
+                } else {
+                  setError("Google did not provide a login credential.");
+                }
+              }}
+              onError={() => {
+                setError("Google sign up was unsuccessful. Please try again.");
+              }}
+              text="signup_with"
+              shape="rectangular"
+              theme="outline"
+              size="large"
+              width="320"
+            />
+          </div>
+        </div>
 
         <p className="mt-7 text-center text-sm text-muted">
           Already have an account?{" "}
