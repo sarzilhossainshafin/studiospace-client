@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StudioSpace — Creative Workspace Booking Platform
 
-## Getting Started
+StudioSpace is a peer-to-peer platform where creators can discover, list, and book creative workspaces and production studios.
 
-First, run the development server:
+## Live Website
+
+https://studiospace-client-sigma.vercel.app/
+
+## Features
+
+- User registration and login with email/password.
+- Google authentication.
+- Browse and explore available creative studios.
+- View detailed information about each studio.
+- Add, edit, and delete your own studio listings.
+- Book creative studios and manage your bookings.
+- View personal dashboard, studio listings, and booking history.
+- Secure authentication using JWT and HTTP-only cookies.
+
+## Technologies Used
+
+**Frontend**
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+**Backend**
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+- Google OAuth
+
+## Run Locally
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/sarzilhossainshafin/studiospace-client.git
+cd studiospace-client
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure environment variables
+
+Create a `.env.local` file in the project root:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
+```
+
+Replace the Google Client ID placeholder with your configured Google OAuth Client ID.
+
+### 4. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Backend Repository
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+https://github.com/sarzilhossainshafin/studiospace-server
 
-## Learn More
+## Examiner Login Credentials
 
-To learn more about Next.js, take a look at the following resources:
+Email: [Add examiner test email]
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Password: [Add examiner test password]
